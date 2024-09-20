@@ -5,7 +5,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "jaketerraformstate1.1"
+    bucket = "jaketerraformstate1.2"
     key    = "s3/terraform.tfstate"
     region = "us-west-1"
 
