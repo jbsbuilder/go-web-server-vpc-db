@@ -5,7 +5,7 @@ data "aws_ami" "latest_linux" {
   most_recent = true
   filter {
     name = "name"
-    values = ["amzn2-ami-hvm-2.0.20211001.1-x86_64-gp2"]
+    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
   }
 }
 
@@ -106,7 +106,7 @@ resource "aws_route_table_association" "cloudsmithlabs_rt_private" {
 
 # ============== EC2 AND SECURITY GROUP =============
 
-  resource "aws_security_group" "cloudsmithlab-ec2-sg" {
+  resource "aws_security_group" "cloudsmithlabs-ec2-sg" {
   name        = "cloudsmithlabs EC2 SG"
   description = "cloudsmithlabs EC2 SG"
   vpc_id      = aws_vpc.cloudsmithlabs_vpc.id
@@ -152,9 +152,9 @@ resource "aws_instance" "cloudsmithlabs-ec2" {
   ami = data.aws_ami.latest_linux.id
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.cloudsmithlabs-ec2-sg.id]
-  subnet_id = aws_subnet.cloudsmithlabs_subnet[0].id 
+  subnet_id = aws_subnet.cloudsmithlabs_public_subnet[0].id 
   key_name      = aws_key_pair.mykey.key_name
-  user_data = file("user_data.sh")
+  user_data = file("user.sh")
   tags = {
     Name = "${var.project} - WebServer"
   }

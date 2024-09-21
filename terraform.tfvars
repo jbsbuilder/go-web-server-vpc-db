@@ -9,11 +9,12 @@ public_subnet_cidrs = [
 
 private_subnet_cidrs = [ 
 	"10.0.7.0/24",
-	"10.0.8.0./24"
+	"10.0.8.0/24"
 ]
 
 instance_type = "t2.micro"
 
-variable "PATH_TO_PRIVATE_KEY" {~/.ssh/cloudlabs}
+PATH_TO_PRIVATE_KEY = "/home/hooseboi/.ssh/cloudlabs/mykey"
 
-variable "PATH_TO_PUBLIC_KEY" {~/.ssh/cloudlabs/pub}
+PATH_TO_PUBLIC_KEY  = "/home/hooseboi/.ssh/cloudlabs/pub/mykey.pub"
+
